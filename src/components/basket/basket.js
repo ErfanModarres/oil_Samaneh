@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import BasketIcon from '../../assets/images/basket.png'
 import { removeFromCard ,dec_count,inc_count  } from '../productList/productListSlice'
-
+import axios from 'axios'
 
 
 
@@ -14,21 +14,53 @@ export default function Basket(props) {
     const classes = useStyles();
     const orderCount = useSelector((state) => state.counter.value)
     const totalPrice=useSelector((state) => state.counter.totalPrice)
-    // const itemCount=useSelector((state)=> state.counter.value.count)
-    
+    const carInfo=useSelector((state)=> state.carInfo.value)
     const [itemCount, setItemCount] = useState(1)
     const dispatch = useDispatch()
 
-    // function counterPlus(e) {
-    //     setItemCount(itemCount + 1)
-    // }
-    // function counterMinus(e) {
-    //     if (itemCount > 0) {
-    //         setItemCount(itemCount - 1)
-    //     }
-    // }
 
-    console.log(JSON.stringify(orderCount));
+
+    const paymentHandler = (e) => {
+        console.log('start ********************')
+        const key = localStorage.getItem(`key`);
+        const authorization = localStorage.getItem('authorization');
+        const title = { title: 'React POST Request Example' };
+        const config = axios.create({});
+        const headers = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authorization };
+        const getList = async (title, headers) => {
+            console.log(`car info ${JSON.stringify(carInfo)}`)
+            console.log(`order count ${JSON.stringify(orderCount)}`)
+            const data = {
+                vKey:key,
+                iTotalLiter: 4,
+                iTotalPrice:totalPrice,
+                Cars: [{ 
+                        "vChassisNo": carInfo[0].vChassisNo,
+                        "vEngineNo": carInfo[0].vEngineNo, 
+                        "iLiter": carInfo[0].iLiter
+                    }],
+                Products: [{
+                  "iCode": orderCount[0].Id,
+                  "iPrice": orderCount[0].Price,
+                  "iCount": orderCount[0].count,
+                  "iLiter": 4
+                }]
+            }
+            console.log(`payment data ; ${JSON.stringify( data)}`)
+            let response = await config.post('http://192.168.90.36:7700/api/oil_sales/v1/sale_order_add', data , { headers: headers })
+            // let response = await config.post('http://94.139.170.163:7700/api/oil_sales/v1/customer_car_add', { vKey: key, vChassisNo: chassi, vEngineNo: engine, LicensePlate: plakNumber }, { headers: headers });
+
+            if (response.data.settings.success == 1) {
+                const plakArray = [response.data.data];
+                
+            }
+            response = response.data
+        }
+        getList("", headers)
+    };
+
+
+
 
     return (
         <Grid className={classes.basketBox}>
@@ -116,6 +148,7 @@ export default function Basket(props) {
                         variant='contained'
                         color='primary'
                         fullWidth
+                        onClick={paymentHandler}
                     >
                         پرداخت صورتحساب
                     </Button>

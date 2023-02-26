@@ -1,22 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 
-export const counterSlice = createSlice({
 
-  name: 'basketCounter',
-  initialState: {
-    value: 0,
-  },
+export const mainPageSlice = createSlice({
 
-  reducers: {
-    increment: (state) => {
-      state.value += 1
+    name: 'carInfo',
+    initialState: {
+        value: [],
     },
-  },
+    reducers: {
+        getCarList: (state, action) => {
+            const value = [...state.value]
+            console.log(`car Info ${JSON.stringify(state.value)}`)
+            console.log(` payLoad ${JSON.stringify(action.payload)}`)
+            state.value=action.payload;
+        },
+
+
+    },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment } = counterSlice.actions
+export const { getCarList } = mainPageSlice.actions
 
-export default counterSlice.reducer
+export default mainPageSlice.reducer
+
+
 

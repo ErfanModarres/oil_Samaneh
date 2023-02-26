@@ -14,6 +14,8 @@ import Modal from '../modal/index'
 import './mainPage.css'
 import Header from '../header'
 import { pureFinalPropsSelectorFactory } from 'react-redux/es/connect/selectorFactory'
+import { useSelector, useDispatch } from 'react-redux'
+import {getCarList} from './mainPageSlice'
 
 
 
@@ -24,6 +26,7 @@ export default function Login(props) {
     const [productList, setProductList] = useState([]);
     const [licensePlateArray, setLicensePlateArray] = useState([]);
     const [openBackDrop, setOpenBackDrop] = React.useState(true);
+    const dispatch = useDispatch()
 
 
 
@@ -64,6 +67,7 @@ export default function Login(props) {
             let response = await config.post('http://192.168.90.36:7700/api/oil_sales/v1/customer_car_by_key', { vKey: key }, { headers: headers });
             if (response.data.settings.success === 1) {
                 setLicensePlateArray(response.data.data);
+                dispatch(getCarList(response.data.data))
                 console.log(`Request body ${JSON.stringify(response.data.data)}`);
                 setTimeout(handleBackDropClose, 1000);
 
