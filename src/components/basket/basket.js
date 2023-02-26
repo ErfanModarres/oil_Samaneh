@@ -13,6 +13,7 @@ import { removeFromCard ,dec_count,inc_count  } from '../productList/productList
 export default function Basket(props) {
     const classes = useStyles();
     const orderCount = useSelector((state) => state.counter.value)
+    const totalPrice=useSelector((state) => state.counter.totalPrice)
     // const itemCount=useSelector((state)=> state.counter.value.count)
     
     const [itemCount, setItemCount] = useState(1)
@@ -97,7 +98,7 @@ export default function Basket(props) {
                             <ul className={classes.list}>
                                 <li>
                                     <h4>
-                                         ریال
+                                        {totalPrice.toLocaleString("en-US")} ریال
                                     </h4>
                                 </li>
                                 <li>

@@ -126,7 +126,8 @@ export default function Login(props) {
                                 viscosity={p.vSAE}
                                 brand={p.vBrand}
                                 image={p.vLink}
-                                price={p.iPrice.toLocaleString("en-US")}
+                                // price={p.iPrice.toLocaleString("en-US")}
+                                price={p.iPrice}
                             />
                         )
                     })}

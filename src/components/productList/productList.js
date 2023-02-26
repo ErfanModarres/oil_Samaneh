@@ -29,7 +29,7 @@ export default function ProductList(props) {
                 
             </Grid>
             <Grid className={classes.productOrder}>
-                <h2>{props.price}  ریال</h2>
+                <h2>{props.price.toLocaleString("en-US")}  ریال</h2>
                 <h4>قیمت مصرف کننده <br />با احتساب مالیات ارزش افزوده</h4>
                 <Button
                     variant="contained"
