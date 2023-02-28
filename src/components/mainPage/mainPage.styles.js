@@ -78,5 +78,23 @@ export default makeStyles((theme) => ({
         flexDirection:'column',
         justifyContent:'center',
         alignItems:'center'
-    }
+    },
+    paper: {
+        backgroundColor: '#fff',
+        width: '30%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        top: '20vh',
+        left: '35%',
+        borderRadius: 15,
+        border: '1px solid #000',
+        padding: 10
+    },
+    addPelak: {
+        display: 'flex',
+        flexDirection: 'row'
+    },
 }))

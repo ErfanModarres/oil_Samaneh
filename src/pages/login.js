@@ -95,9 +95,9 @@ export default function Login() {
                     <h1 className={classes.mainTitle}>
                         {Constants.mainTitle}
                     </h1>
-                    <body1 className={classes.subTitle}>
+                    <Grid className={classes.subTitle}>
                         {Constants.subTitle}
-                    </body1>
+                    </Grid>
                 </Grid>
             </Hidden>
             <Grid className={classes.formBox}>
@@ -110,8 +110,8 @@ export default function Login() {
                     onChange={event => setId(event.target.value)}
                     type='number'
                     label="کدملی "
-                    required='true'
-                    autoFocus='true'
+                    required={true}
+                    autoFocus={true}
                     size="small"
                     variant="outlined" />
                 <TextField
@@ -121,7 +121,7 @@ export default function Login() {
                     onChange={event => setNumber(event.target.value)}
                     type='number'
                     label="شماره موبایل"
-                    required='true'
+                    required={true}
                     size="small"
                     variant="outlined" />
                 <Button
@@ -140,7 +140,7 @@ export default function Login() {
                         inputProps={{ maxLength: 5 }}
                         onChange={event => setOtp(event.target.value)}
                         label="کد یکبار مصرف"
-                        required='true'
+                        required={true}
                         size="small"
                         type='number'
                         variant="outlined" />

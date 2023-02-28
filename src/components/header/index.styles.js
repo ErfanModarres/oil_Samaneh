@@ -18,14 +18,15 @@ export default makeStyles((theme) => ({
         alignItems: 'center',
     },
     logo: {
-        height: 85
+        height: 80,
+        border:'2px solid #fff',
+        borderRadius:5,
+        // marginRight:20,
+        height:70
     },
 
     logoBox: {
-        backgroundColor: '#fff',
-        width:80,
-        height:80,
-        borderRadius:10,
+
         display:'flex',
         justifyContent:'center',
         alignItems:'center',

@@ -72,5 +72,13 @@ export default makeStyles((theme) => ({
         flexDirection:'row',
         justifyContent:'center', 
     },
-
+    backdrop:{
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+        textAlign:'center',
+        display:'flex',
+        flexDirection:'column',
+        justifyContent:'center',
+        alignItems:'center'
+    },
 }))

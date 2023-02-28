@@ -1,26 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit'
+// import { createSlice } from '@reduxjs/toolkit'
 
-export const counterSlice = createSlice({
+// export const carSlice = createSlice({
 
-    name: 'basketCounter',
-    initialState: {
-        price: 1000, 
-        productId: "",
-        value:0
-    },
-    reducers: {
-        increment: (state) => {
-            state.value +=1;
-          
-        },
+//     name: 'car',
+//     initialState: {
+//         value:[]
+//     },
+//     reducers: {
+//         pushCar: (state, action) => {
+//             console.log(`state ${JSON.stringify(state)}`)
+//             console.log(`action ${JSON.stringify(action)}`)
+//         },
         
-    },
-})
+//     },
+// })
 
-// Action creators are generated for each case reducer function
-export const { increment } = counterSlice.actions
+// // Action creators are generated for each case reducer function
+// export const { pushCar } = carSlice.actions
 
-export default counterSlice.reducer
+// export default carSlice.reducer
 
 
 

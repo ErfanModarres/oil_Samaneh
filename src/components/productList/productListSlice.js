@@ -17,7 +17,7 @@ function add_permission_quota(basketList,quota){
     });
     var ret=false;
     (sum>quota ? ret=false: ret=true)
-    console.log(`quota permission ${ret} , sum ${sum} , quota ${quota}`)
+    // console.log(`quota permission ${ret} , sum ${sum} , quota ${quota}`)
     return ret;
 }
 
@@ -44,7 +44,7 @@ export const counterSlice = createSlice({
                
             }
             state.totalPrice=calc_total_price(state.value);
-            console.log(`backet value ${state.value}`)
+            // console.log(`backet value ${state.value}`)
 
         },
         removeFromCard: (state, action) => {

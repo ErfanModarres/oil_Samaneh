@@ -1,7 +1,7 @@
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles'
 import palette from './palette'
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: palette,
   direction: 'rtl',
   spacing: 2,

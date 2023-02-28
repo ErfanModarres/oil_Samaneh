@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Grid, Divider, Button } from '@material-ui/core'
 import useStyles from './car.styles'
 import LicensePlate from '../licensePlate/licensePlate'
@@ -6,7 +6,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
 import axios from 'axios'
-
+import { change_checked_car } from '../mainPage/mainPageSlice'
+import { useSelector, useDispatch } from 'react-redux'
 
 
 export default function Car(props) {
@@ -17,11 +18,16 @@ export default function Car(props) {
     const key = localStorage.getItem(`key`);
     const carId = props.carId;
     const authorization = localStorage.getItem('authorization');
-
-
+    const [totalAllocation , setTotalAllocation] = useState (0)
+    const dispatch = useDispatch()
+    const checkedCar = useSelector((state) => state.carInfo.value.isActive)
 
     const handleChange = (event) => {
-        setCheck({ ...check, [event.target.name]: event.target.checked });
+        setCheck({checked: true});
+        console.log(`check ${check.checked}`);
+        if(check.checked == true ) {
+            setTotalAllocation(props.litter) 
+            console.log(`totalAllocation${totalAllocation}`)};
     };
 
 
@@ -34,7 +40,8 @@ export default function Car(props) {
             let response = await config.post('http://192.168.90.36:7700/api/oil_sales/v1/customer_car_delete', { vKey: key, vCustomerCarId: carId }, { headers: headers })
 
             if (response.data.settings.success == 1) {
-                alert(" خودروی مورد نظر با موفقیت حذف شد ، برای بروزرسانی لیست صفحه را رفرش کنید")
+                alert(" خودروی مورد نظر با موفقیت حذف شد");
+                window.location.reload();
             }
             response = response.data
             // console.log(`${JSON.stringify(response)}`);
@@ -46,8 +53,8 @@ export default function Car(props) {
         <Grid className={classes.root}>
             <Grid className={classes.control}>
                 <Checkbox
-                    checked={check.checked}
-                    onChange={handleChange}
+                    checked={checkedCar}
+                    onChange={() => dispatch(change_checked_car(props.carId))}
                     name="checked"
                     color="primary"
                 />
