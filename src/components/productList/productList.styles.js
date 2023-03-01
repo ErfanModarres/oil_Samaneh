@@ -44,7 +44,8 @@ export default makeStyles((theme) => ({
         flexDirection:'column',
         justifyContent:'center',
         alignItems:'center',
-        textAlign:'center'
+        textAlign:'center',
+        lineHeight:1
 
     },
 }))

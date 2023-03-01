@@ -1,14 +1,13 @@
 import { Grid, Button, Hidden } from '@material-ui/core'
 import axios from 'axios'
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import useStyles from './login.styles'
 import Logo_oil from '../assets/images/oil.png'
 import Constants from '../constants'
 import TextField from '@material-ui/core/TextField';
 import './login.css'
-import Backdrop from '@material-ui/core/Backdrop';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import LoginPic from '../assets/images/login.png'
+
 
 
 export default function Login() {
@@ -19,11 +18,6 @@ export default function Login() {
     const [body, setBody] = useState('');
     const [otp, setOtp] = useState('')
     const [key, setKey] = useState('')
-    const [open, setOpen] = React.useState(false);
-
-    const handleClose = () => {
-        setOpen(false);
-    };
 
     // useEffect(() => {
     //     var timer = setInterval(() => {
@@ -39,15 +33,12 @@ export default function Login() {
 
     var url = 'http://192.168.90.36:7700/api/oil_sales/v1/verify_cellphone_otp'
     const client = axios.create({});
-
     const addPosts = async (title, body) => {
         let response = await client.post(url, { vMobileNumber: number, vNationalCode: id })
         response = response.data
-        console.log(`${JSON.stringify(response)}`);
         if (response.settings.success === 1) {
             setKey(response.data.vKey);
-            setTimeout(handleClose, 3000);
-            console.log(key);
+            console.log(`response : ${JSON.stringify(response)}`);
         } else if (response.settings.success !== 1) {
             alert(response.settings.message);
         }
@@ -59,7 +50,6 @@ export default function Login() {
         addPosts(title, body);
         TextField.idCode = '';
         TextField.phoneNumber = '';
-        setOpen(!open);
     };
 
     const otpClient = axios.create({});
@@ -69,10 +59,9 @@ export default function Login() {
         console.log(`${JSON.stringify(response)}`);
         if (response.settings.success === 1) {
             const authorization = response.data.authorization
-            localStorage.setItem('authorization', authorization , `key`,key);
-            localStorage.setItem(`key`,key);
+            localStorage.setItem('authorization', authorization, `key`, key);
+            localStorage.setItem(`key`, key);
             window.location.href = `/home`;
-
         } else if (response.settings.success !== 1) {
             alert(response.settings.message);
         }
@@ -89,17 +78,17 @@ export default function Login() {
 
     return (
         <Grid className={classes.root}>
-            <Hidden smDown>
-                <Grid className={classes.logoBox}>
+            <Grid className={classes.logoBox}>
+                <Hidden smDown>
                     <img alt="" src={Logo_oil} className={classes.logo} />
-                    <h1 className={classes.mainTitle}>
-                        {Constants.mainTitle}
-                    </h1>
-                    <Grid className={classes.subTitle}>
-                        {Constants.subTitle}
-                    </Grid>
+                </Hidden>
+                <h1 className={classes.mainTitle}>
+                    {Constants.mainTitle}
+                </h1>
+                <Grid className={classes.subTitle}>
+                    {Constants.subTitle}
                 </Grid>
-            </Hidden>
+            </Grid>
             <Grid className={classes.formBox}>
                 <img alt="" src={LoginPic} className={classes.LoginPic} />
                 <TextField
@@ -153,15 +142,12 @@ export default function Login() {
                         variant='contained'>
                         ارسال
                     </Button>
-                    <Backdrop className={classes.backdrop} open={open} >
-                        <CircularProgress color="inherit" />
-                        تا چند ثانیه دیگر کد یکبار مصرف به شماره شما پیامک خواهد شد
-                    </Backdrop>
                 </Grid>
                 {/* <body1 className={classes.resendText}>
                     ارسال مجدد کد تا {seconds} ثانیه دیگر
                 </body1> */}
             </Grid>
+
         </Grid>
     )
 }

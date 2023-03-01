@@ -22,7 +22,6 @@ export default function Basket(props) {
     const [itemCount, setItemCount] = useState(1)
     const dispatch = useDispatch()
     const [openBackDrop, setOpenBackDrop] = React.useState(false);
-    // const total = dispatch(totalOrderLiter.totalOrderLiter)
 
 
 
@@ -30,7 +29,7 @@ export default function Basket(props) {
         window.location.href = '/hamed';
     }
     const paymentHandler = (e) => {
-        console.log('start ********************')
+        // console.log('start ********************')
         const key = localStorage.getItem(`key`);
         const authorization = localStorage.getItem('authorization');
         const title = { title: 'React POST Request Example' };
@@ -59,7 +58,7 @@ export default function Basket(props) {
             console.log(`payment data ; ${JSON.stringify(data)}`)
             let response = await config.post('http://192.168.90.36:7700/api/oil_sales/v1/sale_order_add', data, { headers: headers })
             // let response = await config.post('http://94.139.170.163:7700/api/oil_sales/v1/customer_car_add',  data, { headers: headers });
-            console.log(`Link ; ${JSON.stringify(response.data.data)}`)
+            // console.log(`Link ; ${JSON.stringify(response.data.data)}`)
             setOpenBackDrop(false)
             if (response.data.settings.success == 1) {
                 const url = [response.data.data.vPaymentUrl];
@@ -75,8 +74,6 @@ export default function Basket(props) {
     };
 
 
-
-
     return (
         <Grid className={classes.basketBox}>
             <Backdrop className={classes.backdrop} open={openBackDrop} >
@@ -85,6 +82,7 @@ export default function Basket(props) {
             </Backdrop>
             <Grid className={classes.basketTitel}>
                 <h2>سبد خرید شما</h2>
+                <span>برای خرید ابتدا حداقل یک خودرو را انتخاب نمایید</span>
             </Grid>
             <Divider variant="middle" style={{ margin: 10 }} />
             <Grid className={classes.basketBody}>
@@ -95,9 +93,8 @@ export default function Basket(props) {
                                 <h3>{z.Title}</h3>
                                 <ButtonGroup variant="contained" color="primary" size="small" className={classes.ButtonGroup}>
                                     <Button onClick={() => dispatch(inc_count(z.Id))}>+</Button>
-                                    {/* <Button>{itemCount}</Button> */}
                                     <Button>{z.count}</Button>
-                                    <Button onClick={() => dispatch(dec_count(z.Id))}>-</Button>
+                                    <Button onClick={() => dispatch(dec_count(z.Id))} disabled={z.count == 0}>-</Button>
                                 </ButtonGroup>
                                 <Button onClick={() => dispatch(removeFromCard(z.Id))}>
                                     <DeleteForeverIcon color="primary" />

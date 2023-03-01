@@ -8,6 +8,15 @@ export default makeStyles((theme) => ({
         height: '100vh',
         backgroundColor: '#fff'
     },
+
+    "@media screen and (max-width: 767px)": {
+        root : {
+            flexDirection: 'column',
+        },
+        logo: {
+            width:'30%'
+        },
+    },
     logoBox: {
         display: 'flex',
         flexDirection: 'column',
@@ -17,7 +26,9 @@ export default makeStyles((theme) => ({
         background: "linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)",
         backgroundSize: "165% 165%",
         animation: "gradient 15s infinite",
-        height: "100vh"
+        height: "100vh",
+        padding:25,
+        textAlign:'center'
     },
     "@keyframes gradient":{
         "0%": { opacity: '0' },
@@ -31,11 +42,13 @@ export default makeStyles((theme) => ({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop:20
     },
 
     logo: {
         width: 200
     },
+
     mainTitle: {
         color: '#fff'
     },
@@ -102,6 +115,11 @@ export default makeStyles((theme) => ({
     backdrop:{
         zIndex: theme.zIndex.drawer + 1,
         color: '#fff',
+        width:'50%',
+        display:'flex',
+        flexDirection:'column',
+        justifyContent:'center',
+        textAlign:'center'
     },
     LoginPic:{
         width:'33%'
