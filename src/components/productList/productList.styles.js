@@ -10,12 +10,28 @@ export default makeStyles((theme) => ({
         display:'flex',
         flexDirection:'row',
         width:'100%',
-        height:300,
         margin:10,
         borderRadius:10,
         justifyContent:'center',
-        border:'2px solid #fff'
+        border:'2px solid #fff',
+        backgroundColor:'#fff',
+        padding:'10px 10px'
+    },
+    "@media screen and (max-width: 840px)": {
+        productBox : {
+            display:'flex',
+            flexDirection:'column',
+            width:'100%',
+            margin:10,
+            borderRadius:10,
+            justifyContent:'center',
+            alignItems:'center'
 
+        },
+        productData:{
+            alignItems:'center',
+
+        }
     },
     productPicArea:{
         display:'flex',
@@ -25,7 +41,7 @@ export default makeStyles((theme) => ({
         alignItems:'center',
     },
     productPic:{
-        height:'70%',
+        height:200,
         borderRadius:10
     },
     productData:{
@@ -35,7 +51,7 @@ export default makeStyles((theme) => ({
         justifyContent:'center',
         alignItems:'start',
         padding:50,
-        lineHeight:0
+        lineHeight:0,
 
     },
     productOrder:{
@@ -45,7 +61,7 @@ export default makeStyles((theme) => ({
         justifyContent:'center',
         alignItems:'center',
         textAlign:'center',
-        lineHeight:1
+        lineHeight:1,
 
     },
 }))

@@ -17,7 +17,6 @@ import { getCarList } from './mainPageSlice'
 import Flag from '../../assets/images/pelak.png'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Loading from '../loading'
-import { TramRounded } from '@material-ui/icons'
 
 
 
@@ -180,11 +179,6 @@ export default function Login(props) {
             <Grid className={classes.header}>
                 <Header />
             </Grid>
-            <Hidden smUp>
-                <Grid className={classes.menuBar}>
-                <span>this is a menu bar</span>
-                </Grid>
-            </Hidden>
             <Grid className={classes.body}>
                 <Hidden mdDown>
                     <Grid className={classes.sideBar}>
@@ -197,6 +191,7 @@ export default function Login(props) {
                                 variant='contained'
                                 startIcon={<TimeToLeaveIcon />}
                                 onClick={handleOpen}
+                                size='large'
                             >
                                 ثبت خودروی جدید
                             </Button>

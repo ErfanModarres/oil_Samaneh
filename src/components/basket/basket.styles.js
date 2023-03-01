@@ -5,80 +5,83 @@ export default makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         width: "95%",
-        backgroundColor:'#fff',
-        borderRadius:10,
-        margin:10,
-        padding:15,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        margin: 10,
+        padding: 15,
 
     },
-    badge:{
+    badge: {
         '& > *': {
             margin: theme.spacing(1),
-          },
+        },
     },
-    basketTitel:{
-        display:'flex',
-        flexDirection:'column',
-        justifyContent:'center',
-        alignItems:'center',
-        width:'100%'
+    basketTitel: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%'
     },
-    basketBody:{
-        display:'flex',
-        flexDirection:'column',
-        justifyContent:'center',
-        width:'100%'
+    basketBody: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        width: '100%'
     },
-    basketPrice:{
-        display:'flex',
-        flexDirection:'row',
-        justifyContent:'center', 
+    basketPrice: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
     },
-    priceTitle:{
-        display:'flex',
-        flexDirection:'column',
-        justifyContent:'start',
-        width:'100%',
-        alignItems:'start',
-        textAlign:'end' 
+    priceTitle: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'start',
+        width: '100%',
+        alignItems: 'start',
+        textAlign: 'end'
     },
-    priceAmount:{
-        display:'flex',
-        flexDirection:'column',
-        justifyContent:'end',
-        width:'100%' 
+    priceAmount: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'end',
+        width: '100%'
     },
-    basketItem:{
-        display:'flex',
-        flexDirection:'column',
-        justifyContent:'center',
-        width:'100%' 
+    basketItem: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        width: '100%'
     },
-    list:{
-        listStyle:'none',
+    list: {
+        listStyle: 'none',
     },
-    basketItemControl:{
-        display:'flex',
-        flexDirection:'row',
-        justifyContent:'space-between', 
-        alignItems:'center'
+    basketItemControl: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
-    ButtonGroup:{
-        margin : 10,
-        borderRadius : 10
+    ButtonGroup: {
+        margin: 10,
+        borderRadius: 10
     },
-    totalPrice:{
-        display:'flex',
-        flexDirection:'row',
-        justifyContent:'center', 
+    totalPrice: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
     },
-    backdrop:{
+    backdrop: {
         zIndex: theme.zIndex.drawer + 1,
         color: '#fff',
-        textAlign:'center',
-        display:'flex',
-        flexDirection:'column',
-        justifyContent:'center',
-        alignItems:'center'
+        textAlign: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    CircularProgress: {
+        marginRight: 10,
     },
 }))

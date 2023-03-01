@@ -8,7 +8,8 @@ import { removeFromCard, dec_count, inc_count } from '../productList/productList
 import axios from 'axios'
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-// import { totalOrderLiter } from './basketSlice'
+import LoadingBar from '../loading'
+
 
 
 
@@ -22,6 +23,7 @@ export default function Basket(props) {
     const [itemCount, setItemCount] = useState(1)
     const dispatch = useDispatch()
     const [openBackDrop, setOpenBackDrop] = React.useState(false);
+    const [loading, setLoading] = useState(false)
 
 
 
@@ -35,7 +37,7 @@ export default function Basket(props) {
         const title = { title: 'React POST Request Example' };
         const config = axios.create({});
         const headers = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authorization };
-        setOpenBackDrop(true)
+        setLoading(true)
         const getList = async (title, headers) => {
             // console.log(`car info ${JSON.stringify(carInfo)}`)
             // console.log(`order count ${JSON.stringify(orderCount)}`)
@@ -165,9 +167,13 @@ export default function Basket(props) {
                         color='primary'
                         fullWidth
                         onClick={paymentHandler}
+                        size='large'
+                        disabled={loading ? true : false}
                     >
+                        {loading ? <CircularProgress className={classes.CircularProgress} size={20} /> : null }
                         پرداخت صورتحساب
                     </Button>
+
                 </Grid>
             </Grid>
         </Grid >

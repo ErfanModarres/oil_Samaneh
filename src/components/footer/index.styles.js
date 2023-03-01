@@ -10,7 +10,8 @@ export default makeStyles((theme) => ({
         flexDirection:'column',
         justifyContent:'center',
         alignItems:'center',
-        color:'#fff'
+        color:'#fff',
+        textAlign:'center'
     },
     logo:{
         height:80

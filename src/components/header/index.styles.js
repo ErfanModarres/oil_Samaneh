@@ -1,6 +1,9 @@
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, useTheme  } from '@material-ui/core'
+
+const drawerWidth = 240;
 
 export default makeStyles((theme) => ({
+
     root: {
         width: "100%",
         padding: 20,
@@ -18,19 +21,16 @@ export default makeStyles((theme) => ({
         alignItems: 'center',
     },
     logo: {
-        height: 80,
-        border: '2px solid #fff',
+        height: 50,
+        border: '1px solid #fff',
         borderRadius: 5,
-        // marginRight:20,
-        height: 70
+        marginLeft:5
     },
-
-    logoBox: {
-
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: 20
+    IconButtonFunc:{
+        height: 50,
+        border: '1px solid #fff',
+        borderRadius: 5,
+        marginLeft:5
     },
     titleBox: {
         display: 'flex',
@@ -39,6 +39,59 @@ export default makeStyles((theme) => ({
         alignItems:'center',
         textAlign:'center'
     },
-
+    rootDrawer: {
+        display: 'flex',
+      },
+      appBar: {
+        transition: theme.transitions.create(['margin', 'width'], {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+      },
+      appBarShift: {
+        width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: drawerWidth,
+        transition: theme.transitions.create(['margin', 'width'], {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
+      },
+      menuButton: {
+        marginRight: theme.spacing(2),
+      },
+      hide: {
+        display: 'none',
+      },
+      drawer: {
+        width: drawerWidth,
+        flexShrink: 0,
+      },
+      drawerPaper: {
+        width: drawerWidth,
+      },
+      drawerHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
+        justifyContent: 'flex-end',
+      },
+      content: {
+        flexGrow: 1,
+        padding: theme.spacing(3),
+        transition: theme.transitions.create('margin', {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+        marginLeft: -drawerWidth,
+      },
+      contentShift: {
+        transition: theme.transitions.create('margin', {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
+        marginLeft: 0,
+      },
 
 }))
