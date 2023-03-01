@@ -13,7 +13,7 @@ export default function Header(props) {
 
     return (
         <Grid className={classes.root}>
-            <Hidden smDown>
+
             <Grid className={classes.logoBox}>
                 <img src={Logo} className={classes.logo} />
             </Grid>
@@ -21,7 +21,6 @@ export default function Header(props) {
                 <h2>سامانه توزیع روغن موتور پیدو</h2>
                 <span>تحت نظارت وزارت صنعت ، معدن و تجارت جمهوری اسلامی ایران </span>
             </Grid>
-            </Hidden>
         </Grid>
 
 

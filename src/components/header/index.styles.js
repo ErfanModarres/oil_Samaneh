@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
         height: 100,
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'start',
+        justifyContent: 'center',
         alignItems: 'center',
         color: '#fff'
     },
@@ -19,23 +19,25 @@ export default makeStyles((theme) => ({
     },
     logo: {
         height: 80,
-        border:'2px solid #fff',
-        borderRadius:5,
+        border: '2px solid #fff',
+        borderRadius: 5,
         // marginRight:20,
-        height:70
+        height: 70
     },
 
     logoBox: {
 
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center',
-        marginRight:20
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 20
     },
-    titleBox:{
+    titleBox: {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
+        alignItems:'center',
+        textAlign:'center'
     },
 
 

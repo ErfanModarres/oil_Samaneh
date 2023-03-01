@@ -9,6 +9,7 @@ export default makeStyles((theme) => ({
         backgroundSize: "165% 165%",
         animation: "gradient 15s infinite",
     },
+
     body:{
         display: 'flex',
         flexDirection: 'row',
@@ -20,7 +21,20 @@ export default makeStyles((theme) => ({
         marginRight:25,
         marginLeft:25,
         borderRadius:10,
-
+    },
+        "@media screen and (max-width: 840px)": {
+        productBox : {
+            display:'flex',
+            flexDirection:'column'
+        },
+        productData:{
+            display:'flex',
+            flex:2,
+            flexDirection:'row',
+            justifyContent:'center',
+            alignItems:'start',
+            padding:10
+        },
     },
     sideBar:{
         display:'flex',
@@ -30,7 +44,6 @@ export default makeStyles((theme) => ({
         margin:10,
         borderRadius:10,
         height:"100vh"
-
     },
     productPicArea:{
         display:'flex',
@@ -50,7 +63,6 @@ export default makeStyles((theme) => ({
         justifyContent:'center',
         alignItems:'start',
         padding:10
-
     },
     productOrder:{
         display:'flex',
@@ -59,7 +71,6 @@ export default makeStyles((theme) => ({
         justifyContent:'center',
         alignItems:'center',
         textAlign:'center'
-
     },
     sideBarInfo:{
         display:'flex',
