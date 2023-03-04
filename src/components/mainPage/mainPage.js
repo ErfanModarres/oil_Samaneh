@@ -50,6 +50,7 @@ export default function Login(props) {
     const [chassi, setChassi] = useState('')
     const [engine, setEngine] = useState('')
     const [checked, setChecked] = React.useState(false);
+    const allocate = []
 
 
 
@@ -64,7 +65,6 @@ export default function Login(props) {
             let response = await config.post('http://192.168.90.36:7700/api/oil_sales/v1/product_list', { vKey: key }, { headers: headers });
             if (response.data.settings.success === 1) {
                 setProductList(response.data.data);
-                // console.log(response.data.data);
 
             }
             response = response.data
@@ -147,21 +147,18 @@ export default function Login(props) {
         }
         const config = axios.create({});
         const headers = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authorization };
-        // console.log(`car data ${JSON.stringify(data)}`);
         const getList = async (title, headers) => {
             let response = await config.post('http://192.168.90.36:7700/api/oil_sales/v1/customer_car_add', data, { headers: headers })
             // let response = await config.post('http://94.139.170.162:7700/api/oil_sales/v1/customer_car_add', {vKey: key, vChassisNo: chassi,  vEngineNo: engine, LicensePlate: plakNumber}, { headers: headers })
             console.log(`add car :${JSON.stringify(response)}`);
             if (response.data.settings.success == 1) {
                 const plakArray = [response.data.data];
-                // console.log(`plak array :${JSON.stringify(response)}`);
                 handleClose();
                 alert("خودروی مورد نظر با موفقیت اضافه شد")
                 window.location.reload();
 
             }
             response = response.data
-            // console.log(`error :${JSON.stringify(response)}`);
 
         }
         getList("", headers)
@@ -172,10 +169,6 @@ export default function Login(props) {
 
     return (
         <Grid className={classes.root}>
-            {/* <Backdrop className={classes.backdrop} open={openBackDrop} >
-                <CircularProgress color="inherit" />
-                <h3> لطفا چند ثانیه صبر کنید <br></br> لیست خودروهای شما در حال بروز رسانی می باشد </h3>
-            </Backdrop> */}
             <Grid className={classes.header}>
                 <Header />
             </Grid>

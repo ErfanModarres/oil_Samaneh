@@ -37,7 +37,7 @@ export default function ProductList(props) {
                     color='primary'
                     size="large"
                     fullWidth
-                    onClick={() => dispatch(addToCard({ Title: props.title, Price: props.price, Id: props.iCode, liter: props.iLiter }))}
+                    onClick={() => dispatch(addToCard({ Title: props.title, Price: props.price, Id: props.iCode, liter: props.volume }))}
                 >افزودن به سبد خرید</Button>
             </Grid>
 

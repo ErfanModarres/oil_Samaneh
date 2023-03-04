@@ -5,6 +5,10 @@ import Home from './pages/home'
 import Rtl from './components/theme/Rtl'
 import ThemeProvider from './components/theme/ThemeProvider'
 import Status from './components/paymentStatus/index'
+import About from './pages/aboutUs'
+import Guid from './pages/guid'
+import Contact from './pages/ContactUs'
+import FAQ from './pages/faq'
 
 
 
@@ -15,6 +19,10 @@ import Status from './components/paymentStatus/index'
             <CssBaseline />
             <Router basename="/">
               <Switch>
+                <Route path="/aboutus"><About /></Route>
+                <Route path="/guid"><Guid /></Route>
+                <Route path="/faq"><FAQ /></Route>
+                <Route path="/contactus"><Contact /></Route>
                 <Route path="/payment/status=2"><Status /></Route>
                 <Route exact path="/"><Login /></Route>
                 <Route path="/home"><Home /></Route>

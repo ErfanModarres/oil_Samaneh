@@ -21,6 +21,11 @@ import MailIcon from '@material-ui/icons/Mail';
 import Logo from '../../assets/images/pido.jpg'
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import InfoIcon from '@material-ui/icons/Info';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import LocalGasStationIcon from '@material-ui/icons/LocalGasStation';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import ContactlessIcon from '@material-ui/icons/Contactless';
 
 
 
@@ -68,23 +73,23 @@ export default function Header(props) {
                                 </Typography>
                             </Grid>
                             <Grid style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                    <IconButton
-                                        color="inherit"
-                                        aria-label="open drawer"
-                                        edge="start"
-                                        className={classes.IconButtonFunc}
-                                    >
-                                        <DriveEtaIcon />
-                                    </IconButton>
-                                    <IconButton
-                                        color="inherit"
-                                        aria-label="open drawer"
-                                        edge="start"
-                                        className={classes.IconButtonFunc}
+                                <IconButton
+                                    color="inherit"
+                                    aria-label="open drawer"
+                                    edge="start"
+                                    className={classes.IconButtonFunc}
+                                >
+                                    <DriveEtaIcon />
+                                </IconButton>
+                                <IconButton
+                                    color="inherit"
+                                    aria-label="open drawer"
+                                    edge="start"
+                                    className={classes.IconButtonFunc}
 
-                                    >
-                                        <ShoppingCartIcon />
-                                    </IconButton>
+                                >
+                                    <ShoppingCartIcon />
+                                </IconButton>
                                 <img src={Logo} className={classes.logo} />
 
                             </Grid>
@@ -102,26 +107,38 @@ export default function Header(props) {
                 >
                     <div className={classes.drawerHeader}>
                         <IconButton onClick={handleDrawerClose}>
+                            <ArrowForwardIosIcon />
                         </IconButton>
                     </div>
                     <Divider />
                     <List>
-                        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                                <ListItemText primary={text} />
+                            <ListItem button  >
+                                <ListItemIcon><InboxIcon /> </ListItemIcon>
+                                <ListItemText ><a href={'/aboutus'}>درباره پیدو</a></ListItemText>
                             </ListItem>
-                        ))}
+                            <ListItem button >
+                                <ListItemIcon><LocalGasStationIcon /> </ListItemIcon>
+                                <ListItemText ><a href={"app.pido.co.ir"}>درخواست سوخت  </a></ListItemText>
+                            </ListItem>
+                            <ListItem button >
+                                <ListItemIcon><InfoIcon /> </ListItemIcon>
+                                <ListItemText ><a href={'/guid'}> راهنمای انتخاب روغن</a></ListItemText>
+                            </ListItem>
+                            <ListItem button >
+                                <ListItemIcon><QuestionAnswerIcon /> </ListItemIcon>
+                                <ListItemText ><a href={'/faq'}> سوالات متداول</a></ListItemText>
+                            </ListItem>
+                            <ListItem button >
+                                <ListItemIcon><ContactlessIcon /> </ListItemIcon>
+                                <ListItemText ><a href={'/contactus'}> تماس با ما</a></ListItemText>
+                            </ListItem>
+
                     </List>
                     <Divider />
-                    <List>
-                        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        ))}
-                    </List>
+                    <Grid style={{display:'flex' , flexDirection:'column', justifyContent:'flex-end' , alignItems:'center', height:'100%', margin:10}}>
+                        <img src={Logo} style={{ width: 50 }} />
+                        <span style={{ textAlign: 'center', marginTop:10 }}>کلیه حقوق متعلق به شرکت تجارت الکترونیک آیریک پارسیان (پیــدو ) می باشد</span>
+                    </Grid>
                 </Drawer>
                 <main
                     className={clsx(classes.content, {

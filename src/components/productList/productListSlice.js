@@ -12,11 +12,15 @@ function calc_total_price(basketList){
 
 function add_permission_quota(basketList,quota){
     let sum=0;
+    console.log(`Basket${JSON.stringify(basketList)}`);
     basketList.forEach(element => {
-        sum+=(element.iLiter)
+        sum+=(element.liter * (element.count+1));
+        console.log(`sum is ${sum}`);
     });
+    console.log(`1111111111111111111111111111111111111`);
     var ret=false;
     (sum>quota ? ret=false: ret=true)
+    console.log(`ret ${ret}`);
     // console.log(`quota permission ${ret} , sum ${sum} , quota ${quota}`)
     return ret;
 }
@@ -25,7 +29,7 @@ export const counterSlice = createSlice({
 
     name: 'basketCounter',
     initialState: {
-        quota:4,
+        quota:10,
         count: 0,
         totalPrice:0,
         value: [],
@@ -35,7 +39,14 @@ export const counterSlice = createSlice({
             const value = [...state.value]
             const filterValue= value.findIndex((value) => value.Id == action.payload.Id);
             if (filterValue==-1){
-                if (add_permission_quota(state.value,state.quota)==true) 
+                var payload
+                if(value.length == 0){
+                 payload = [action.payload]
+                payload[0].count = 0
+                }else{
+                     payload = state.value
+                }
+                if (add_permission_quota(payload,state.quota)==true) 
                 {
                     state.value.push(action.payload);
                     action.payload.count=1;
@@ -69,7 +80,9 @@ export const counterSlice = createSlice({
             const value = [...state.value];
             const filterValue= value.findIndex((value) => value.Id == action.payload);
             if (filterValue!=-1){
-                state.value[filterValue].count-=1;
+                
+                if (state.value[filterValue].count-1!=0){state.value[filterValue].count-=1;}
+
             }
             state.totalPrice=calc_total_price(state.value);
         },
