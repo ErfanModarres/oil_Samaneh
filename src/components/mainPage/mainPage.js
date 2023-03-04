@@ -201,6 +201,7 @@ export default function Login(props) {
                                     motor={l.vEngineNo}
                                     litter={l.iLiter}
                                     carId={l.vCustomerCarId}
+                                    tire = {2}
                                 />
                             )
                         })}

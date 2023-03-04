@@ -29,7 +29,7 @@ export const counterSlice = createSlice({
 
     name: 'basketCounter',
     initialState: {
-        quota:10,
+        quota:4,
         count: 0,
         totalPrice:0,
         value: [],

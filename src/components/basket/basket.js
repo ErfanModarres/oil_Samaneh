@@ -31,7 +31,7 @@ export default function Basket(props) {
         window.location.href = '/hamed';
     }
     const paymentHandler = (e) => {
-        // console.log('start ********************')
+        console.log('start ********************')
         const key = localStorage.getItem(`key`);
         const authorization = localStorage.getItem('authorization');
         const title = { title: 'React POST Request Example' };
@@ -39,8 +39,8 @@ export default function Basket(props) {
         const headers = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authorization };
         setLoading(true)
         const getList = async (title, headers) => {
-            // console.log(`car info ${JSON.stringify(carInfo)}`)
-            // console.log(`order count ${JSON.stringify(orderCount)}`)
+            console.log(`car info ${JSON.stringify(carInfo)}`)
+            console.log(`order count ${JSON.stringify(orderCount)}`)
             const data = {
                 vKey: key,
                 iTotalLiter: 4,

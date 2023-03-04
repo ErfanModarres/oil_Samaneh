@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { Grid, Divider, Button } from '@material-ui/core'
 import useStyles from './car.styles'
 import LicensePlate from '../licensePlate/licensePlate'
@@ -8,6 +8,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import axios from 'axios'
 import { change_checked_car } from '../mainPage/mainPageSlice'
 import { useSelector, useDispatch } from 'react-redux'
+import Tire_Icon from '../../assets/images/tire.png'
+import Oil_Icon from '../../assets/images/oil_icon.jfif'
+import Radio from '@material-ui/core/Radio';
+import { withStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
 
 
 export default function Car(props) {
@@ -18,16 +23,22 @@ export default function Car(props) {
     const key = localStorage.getItem(`key`);
     const carId = props.carId;
     const authorization = localStorage.getItem('authorization');
-    const [totalAllocation , setTotalAllocation] = useState (0)
+    const [totalAllocation, setTotalAllocation] = useState(0)
     const dispatch = useDispatch()
     const checkedCar = useSelector((state) => state.carInfo.value.isActive)
+    const [selectedValue, setSelectedValue] = React.useState('a');
+
+    const radioHandleChange = (event) => {
+        setSelectedValue(event.target.value);
+    };
 
     const handleChange = (event) => {
-        setCheck({checked: true});
+        setCheck({ checked: true });
         console.log(`check ${check.checked}`);
-        if(check.checked == true ) {
-            setTotalAllocation(props.litter) 
-            console.log(`totalAllocation${totalAllocation}`)};
+        if (check.checked == true) {
+            setTotalAllocation(props.litter)
+            console.log(`totalAllocation${totalAllocation}`)
+        };
     };
 
 
@@ -52,11 +63,13 @@ export default function Car(props) {
     return (
         <Grid className={classes.root}>
             <Grid className={classes.control}>
-                <Checkbox
-                    checked={checkedCar}
-                    onChange={() => dispatch(change_checked_car(props.carId))}
-                    name="checked"
-                    color="primary"
+                <Radio
+                    checked={selectedValue === 'a'}
+                    onChange={radioHandleChange}
+                    value="a"
+                    color='primary'
+                    name="radio-button-demo"
+                    inputProps={{ 'aria-label': 'A' }}
                 />
                 <Button>
                     <EditIcon />
@@ -76,7 +89,18 @@ export default function Car(props) {
                     />
                 </Grid>
                 <Grid className={classes.motor}>
-                    <h3>سهمیه قابل استفاده : {props.litter} لیتر</h3>
+                    <Grid style={{ display: 'flex', flexDirection: 'row', justifyContent: 'start', alignItems: 'center' }}>
+
+                        <img src={Oil_Icon} style={{ width: 50, marginRight: -10 }} />
+                        <h3>سهمیه روغن موتور : {props.litter} لیتر</h3>
+
+                    </Grid>
+                    <Grid style={{ display: 'flex', flexDirection: 'row', justifyContent: 'start', alignItems: 'center' }}>
+
+                        <img src={Tire_Icon} style={{ width: 35, opacity: '60%', marginLeft: 5 }} />
+                        <h3>سهمیه لاستیـــک  : {props.tire} حلقه</h3>
+                    </Grid>
+
                     <span>شماره شاسی : {props.chassi}</span>
                     <span>شماره موتور : {props.motor}</span>
                 </Grid>
