@@ -23,7 +23,7 @@ import FAQ from './pages/faq'
                 <Route path="/guid"><Guid /></Route>
                 <Route path="/faq"><FAQ /></Route>
                 <Route path="/contactus"><Contact /></Route>
-                <Route path="/payment/status=2"><Status /></Route>
+                <Route path="/payment/"><Status /></Route>
                 <Route exact path="/"><Login /></Route>
                 <Route path="/home"><Home /></Route>
               </Switch>

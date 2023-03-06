@@ -6,17 +6,17 @@ import ProductList from '../productList/productList'
 import Basket from '../basket/basket'
 import CarList from '../carInfo/car'
 import TimeToLeaveIcon from '@material-ui/icons/TimeToLeave';
-import Checkbox from '@material-ui/core/Checkbox';
-// import Backdrop from '@material-ui/core/Backdrop';
-// import CircularProgress from '@material-ui/core/CircularProgress';
 import './mainPage.css'
 import Header from '../header'
-import { pureFinalPropsSelectorFactory } from 'react-redux/es/connect/selectorFactory'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCarList } from './mainPageSlice'
 import Flag from '../../assets/images/pelak.png'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Loading from '../loading'
+import TireList from '../productList/tireList'
+import TireImage from '../../assets/images/Tire.169.jpg'
+import BrandLogo from '../../assets/images/barez.png'
+import BehranLogo from '../../assets/images/behran.svg'
 
 
 
@@ -51,6 +51,7 @@ export default function Login(props) {
     const [engine, setEngine] = useState('')
     const [checked, setChecked] = React.useState(false);
     const allocate = []
+    const order = useSelector((state) => state.counter.value)
 
 
 
@@ -88,7 +89,7 @@ export default function Login(props) {
                 setLicensePlateArray(response.data.data);
                 dispatch(getCarList(response.data.data));
                 setLoading(false);
-
+                console.log(response);
             }
             response = response.data
         }
@@ -189,7 +190,7 @@ export default function Login(props) {
                                 ثبت خودروی جدید
                             </Button>
                         </Grid>
-                        { loading ? <Loading/> : null}
+                        {loading ? <Loading /> : null}
                         {licensePlateArray.map((l, index) => {
                             return (
                                 <CarList
@@ -201,7 +202,7 @@ export default function Login(props) {
                                     motor={l.vEngineNo}
                                     litter={l.iLiter}
                                     carId={l.vCustomerCarId}
-                                    tire = {2}
+                                    tire={2}
                                 />
                             )
                         })}
@@ -219,15 +220,26 @@ export default function Login(props) {
                                 brand={p.vBrand}
                                 image={p.vLink}
                                 price={p.iPrice}
+                                brandLogo={BehranLogo}
+
                             />
                         )
                     })}
 
+                    <TireList
+                        title={"لاستیک بارز سایز 13"}
+                        price={6331073}
+                        brand={'بارز کرمان'}
+                        model={'P648'}
+                        image={TireImage}
+                        size={'165/65R13'}
+                        brandLogo={BrandLogo}
+                    />
                 </Grid>
                 <Hidden mdDown>
-                    <Grid className={classes.sideBar}>
-                        <Basket />
-                    </Grid>
+                    {order != 0 ?<Grid className={classes.sideBar}>
+                         <Basket /> 
+                    </Grid> : null}
                 </Hidden>
             </Grid>
             <Modal

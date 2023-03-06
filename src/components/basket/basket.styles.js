@@ -84,4 +84,24 @@ export default makeStyles((theme) => ({
     CircularProgress: {
         marginRight: 10,
     },
+    psot:{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems:'start',
+        width: '100%',
+        padding:10
+          
+    },
+    send:{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems:'start',
+        height:50,
+        borderRadius:5,
+        border:'2px solid #e1e1e1' ,
+        marginTop:10,
+        padding:'0px 10px'
+    }
 }))

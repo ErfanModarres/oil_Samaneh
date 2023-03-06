@@ -21,12 +21,15 @@ export default makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'start',
         background: "linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)",
         backgroundSize: "165% 165%",
         animation: "gradient 15s infinite",
         width: '100%',
-        height: '100vh'
+        height: '100vh',
+        color:'#fff',
+        padding:200,
+        zIndex:2
 
     },
     "@keyframes gradient": {

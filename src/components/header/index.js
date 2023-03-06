@@ -11,13 +11,10 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import Logo from '../../assets/images/pido.jpg'
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -25,9 +22,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import LocalGasStationIcon from '@material-ui/icons/LocalGasStation';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-import ContactlessIcon from '@material-ui/icons/Contactless';
-
-
+import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 
 export default function Header(props) {
     const classes = useStyles();
@@ -114,23 +109,23 @@ export default function Header(props) {
                     <List>
                             <ListItem button  >
                                 <ListItemIcon><InboxIcon /> </ListItemIcon>
-                                <ListItemText ><a href={'/aboutus'}>درباره پیدو</a></ListItemText>
+                                <ListItemText ><a href={'/aboutus'} style={{color:'#000', textDecoration:'none'}}>درباره پیدو</a></ListItemText>
                             </ListItem>
                             <ListItem button >
                                 <ListItemIcon><LocalGasStationIcon /> </ListItemIcon>
-                                <ListItemText ><a href={"app.pido.co.ir"}>درخواست سوخت  </a></ListItemText>
+                                <ListItemText ><a href={"app.pido.co.ir"} style={{color:'#000', textDecoration:'none'}}>درخواست سوخت  </a></ListItemText>
                             </ListItem>
                             <ListItem button >
                                 <ListItemIcon><InfoIcon /> </ListItemIcon>
-                                <ListItemText ><a href={'/guid'}> راهنمای انتخاب روغن</a></ListItemText>
+                                <ListItemText ><a href={'/guid'} style={{color:'#000', textDecoration:'none'}}> راهنمای انتخاب روغن</a></ListItemText>
                             </ListItem>
                             <ListItem button >
                                 <ListItemIcon><QuestionAnswerIcon /> </ListItemIcon>
-                                <ListItemText ><a href={'/faq'}> سوالات متداول</a></ListItemText>
+                                <ListItemText ><a href={'/faq'} style={{color:'#000', textDecoration:'none'}}> سوالات متداول</a></ListItemText>
                             </ListItem>
                             <ListItem button >
-                                <ListItemIcon><ContactlessIcon /> </ListItemIcon>
-                                <ListItemText ><a href={'/contactus'}> تماس با ما</a></ListItemText>
+                                <ListItemIcon><ContactSupportIcon /> </ListItemIcon>
+                                <ListItemText ><a href={'/contactus'} style={{color:'#000', textDecoration:'none'}}>   پشتیبانی</a></ListItemText>
                             </ListItem>
 
                     </List>

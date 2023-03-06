@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Button, Badge, Divider, ButtonGroup, Hidden } from '@material-ui/core'
+import { Grid, Button, Badge, Divider, ButtonGroup, Hidden, TextField } from '@material-ui/core'
 import useStyles from './basket.styles'
 import { useSelector, useDispatch } from 'react-redux'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import BasketIcon from '../../assets/images/basket.png'
 import { removeFromCard, dec_count, inc_count } from '../productList/productListSlice'
 import axios from 'axios'
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import LoadingBar from '../loading'
-
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import Tipax from '../../assets/images/tipax.jpg'
+import Pido from '../../assets/images/pido_oil.jpg'
+import Address from '../address/address'
+import RoomIcon from '@material-ui/icons/Room';
 
 
 
@@ -24,6 +30,11 @@ export default function Basket(props) {
     const dispatch = useDispatch()
     const [openBackDrop, setOpenBackDrop] = React.useState(false);
     const [loading, setLoading] = useState(false)
+    const [value, setValue] = React.useState();
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    };
 
 
 
@@ -135,12 +146,6 @@ export default function Basket(props) {
                                     </h4>
                                 </li>
 
-                                <li>
-                                    <h4>
-                                        هزینه ارسال  :
-                                    </h4>
-                                </li>
-
                             </ul>
                         </Grid>
                         <Grid className={classes.priceAmount}>
@@ -151,17 +156,34 @@ export default function Basket(props) {
                                         {totalPrice.toLocaleString("en-US")} ریال
                                     </h4>
                                 </li>
-                                <li>
-                                    <h4>
-                                        محاسبه نشده
-                                    </h4>
-                                </li>
-
-
                             </ul>
 
                         </Grid>
                     </Grid>
+                    <Divider variant="middle" style={{ margin: 10 }} />
+                    <FormControl component="fieldset" style={{ width: '100%' }}>
+                        <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+                            <Grid className={classes.post}>
+                                {/* <FormLabel component="legend" >انتخاب نحوه تحویل کالا</FormLabel> */}
+                                <Grid className={classes.send}>
+                                    <FormControlLabel value="mehrabad" style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', width: '100%' }} control={<Radio color='primary' />} label="دریافت از انبار پیدو" />
+                                    <img src={Pido} style={{ height: 30, marginTop: 5 }} />
+                                </Grid>
+                                <Grid style={{ padding: 10 }}>
+                                    {value == 'mehrabad' ? <span>محل تحویل کالا : تهران ، فرودگاه مهرآباد ، خیابان حجاج بعد از پارکینگ شماره 5</span> : null}
+                                </Grid>
+                                <Grid className={classes.send}>
+                                    <FormControlLabel value="tipax" style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', width: '100%' }} control={<Radio color='primary' />} label="ارسال از طریق تیپاکس" />
+                                    <img src={Tipax} style={{ height: 30, marginTop: 5 }} />
+                                </Grid>
+                                <Grid style={{ padding: 10 }}>
+                                    {value == 'tipax' ? <span  >هزینه ارسال تیپاکس بستگی به مقصد و بصورت پس کرایه و بر عهده مشتری می باشد</span> : null}
+                                    {value == 'tipax' ? <Button variant='outlined' color='primary' fullWidth size='large' startIcon={<RoomIcon />} style={{ marginTop: 5 }}>ثبت آدرس</Button> : null}
+
+                                </Grid>
+                            </Grid>
+                        </RadioGroup>
+                    </FormControl>
                     <Button
                         variant='contained'
                         color='primary'
@@ -169,8 +191,9 @@ export default function Basket(props) {
                         onClick={paymentHandler}
                         size='large'
                         disabled={loading ? true : false}
+                        style={{ marginTop: 10 }}
                     >
-                        {loading ? <CircularProgress className={classes.CircularProgress} size={20} /> : null }
+                        {loading ? <CircularProgress className={classes.CircularProgress} size={20} /> : null}
                         پرداخت صورتحساب
                     </Button>
 

@@ -1,4 +1,3 @@
-import { Filter } from '@material-ui/icons';
 import { createSlice } from '@reduxjs/toolkit'
 
 //
@@ -17,13 +16,13 @@ function add_permission_quota(basketList,quota){
         sum+=(element.liter * (element.count+1));
         console.log(`sum is ${sum}`);
     });
-    console.log(`1111111111111111111111111111111111111`);
     var ret=false;
     (sum>quota ? ret=false: ret=true)
     console.log(`ret ${ret}`);
     // console.log(`quota permission ${ret} , sum ${sum} , quota ${quota}`)
     return ret;
 }
+
 
 export const counterSlice = createSlice({
 

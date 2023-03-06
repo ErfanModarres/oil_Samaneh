@@ -2,17 +2,12 @@ import React, { useState } from 'react'
 import { Grid, Divider, Button } from '@material-ui/core'
 import useStyles from './car.styles'
 import LicensePlate from '../licensePlate/licensePlate'
-import Checkbox from '@material-ui/core/Checkbox';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import EditIcon from '@material-ui/icons/Edit';
 import axios from 'axios'
-import { change_checked_car } from '../mainPage/mainPageSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import Tire_Icon from '../../assets/images/tire.png'
 import Oil_Icon from '../../assets/images/oil_icon.jfif'
 import Radio from '@material-ui/core/Radio';
-import { withStyles } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
 
 
 export default function Car(props) {
@@ -20,25 +15,17 @@ export default function Car(props) {
     const [check, setCheck] = React.useState({
         checked: false,
     });
+
     const key = localStorage.getItem(`key`);
     const carId = props.carId;
     const authorization = localStorage.getItem('authorization');
     const [totalAllocation, setTotalAllocation] = useState(0)
     const dispatch = useDispatch()
     const checkedCar = useSelector((state) => state.carInfo.value.isActive)
-    const [selectedValue, setSelectedValue] = React.useState('a');
+    const [selectedValue, setSelectedValue] = React.useState();
 
     const radioHandleChange = (event) => {
         setSelectedValue(event.target.value);
-    };
-
-    const handleChange = (event) => {
-        setCheck({ checked: true });
-        console.log(`check ${check.checked}`);
-        if (check.checked == true) {
-            setTotalAllocation(props.litter)
-            console.log(`totalAllocation${totalAllocation}`)
-        };
     };
 
 
@@ -71,9 +58,7 @@ export default function Car(props) {
                     name="radio-button-demo"
                     inputProps={{ 'aria-label': 'A' }}
                 />
-                <Button>
-                    <EditIcon />
-                </Button>
+
                 <Button onClick={deleteCarHandler}>
                     <DeleteForeverIcon />
                 </Button>

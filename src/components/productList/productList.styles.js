@@ -41,7 +41,7 @@ export default makeStyles((theme) => ({
         alignItems:'center',
     },
     productPic:{
-        height:200,
+        height:250,
         borderRadius:10
     },
     productData:{
@@ -62,6 +62,7 @@ export default makeStyles((theme) => ({
         alignItems:'center',
         textAlign:'center',
         lineHeight:1,
+        margin:'0px 20px'
 
     },
 }))
