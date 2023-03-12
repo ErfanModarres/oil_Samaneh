@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-
+import { wait } from '@testing-library/user-event/dist/utils';
+import {accessTotalQuota} from '../mainPage/mainPageSlice'
 //
 function calc_total_price(basketList){
     var sum=0;
@@ -11,15 +12,13 @@ function calc_total_price(basketList){
 
 function add_permission_quota(basketList,quota){
     let sum=0;
-    console.log(`Basket${JSON.stringify(basketList)}`);
+    // console.log(`Basket${JSON.stringify(basketList)}`);
     basketList.forEach(element => {
         sum+=(element.liter * (element.count+1));
-        console.log(`sum is ${sum}`);
+        // console.log(`sum is ${sum}`);
     });
     var ret=false;
     (sum>quota ? ret=false: ret=true)
-    console.log(`ret ${ret}`);
-    // console.log(`quota permission ${ret} , sum ${sum} , quota ${quota}`)
     return ret;
 }
 
@@ -28,7 +27,7 @@ export const counterSlice = createSlice({
 
     name: 'basketCounter',
     initialState: {
-        quota:4,
+        quota:0,
         count: 0,
         totalPrice:0,
         value: [],
@@ -85,12 +84,17 @@ export const counterSlice = createSlice({
             }
             state.totalPrice=calc_total_price(state.value);
         },
+        setQuota:(state,action)=>{
+            console.log(`action.payload ${action.payload}`);
+            state.quota= action.payload;
+            console.log(JSON.stringify(state));
+        }
 
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addToCard, removeFromCard ,inc_count,dec_count } = counterSlice.actions
+export const { addToCard, removeFromCard ,inc_count,dec_count,setQuota } = counterSlice.actions
 
 export default counterSlice.reducer
 

@@ -56,11 +56,10 @@ export default function Basket(props) {
                 vKey: key,
                 iTotalLiter: 4,
                 iTotalPrice: totalPrice,
-                Cars: [{
-                    "vChassisNo": carInfo[0].vChassisNo,
-                    "vEngineNo": carInfo[0].vEngineNo,
-                    "iLiter": carInfo[0].iLiter
-                }],
+                vEngineNo: carInfo[0].vEngineNo,
+                vChassisNo: carInfo[0].vChassisNo,
+                iLiter: carInfo[0].iLiter,
+                iDeliveryType: 1,
                 Products: [{
                     "iCode": orderCount[0].Id,
                     "iPrice": orderCount[0].Price,
@@ -142,7 +141,7 @@ export default function Basket(props) {
                             <ul className={classes.list}>
                                 <li>
                                     <h4>
-                                        مبلغ قابل پرداخت  :
+                                        قابل پرداخت  :
                                     </h4>
                                 </li>
 
@@ -190,13 +189,23 @@ export default function Basket(props) {
                         fullWidth
                         onClick={paymentHandler}
                         size='large'
-                        disabled={loading ? true : false}
+                        disabled={loading == true || value == null ? true : false}
                         style={{ marginTop: 10 }}
                     >
                         {loading ? <CircularProgress className={classes.CircularProgress} size={20} /> : null}
-                        پرداخت صورتحساب
+                        پرداخت آنلاین
                     </Button>
-
+                    <Button
+                        variant='contained'
+                        color='primary'
+                        fullWidth
+                        // onClick={posHandler}
+                        size='large'
+                        disabled={loading == true || value == null ? true : false}
+                        style={{ marginTop: 10 }}
+                    >
+                        پرداخت نقدی
+                    </Button>
                 </Grid>
             </Grid>
         </Grid >

@@ -40,10 +40,13 @@ export default makeStyles((theme) => ({
         justifyContent:'center',
         alignItems:'center',
     },
+    
     productPic:{
         height:250,
-        borderRadius:10
+        borderRadius:10,
     },
+
+
     productData:{
         display:'flex',
         flex:2,

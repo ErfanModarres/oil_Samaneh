@@ -1,8 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { useSelector, useDispatch } from 'react-redux'
+import {getstore} from '../../../src/index'
+import {setQuota} from '../productList/productListSlice'
 
 
 
-export const mainPageSlice = createSlice({
+export const MainPageSlice = createSlice({
 
     name: 'carInfo',
     initialState: {
@@ -26,19 +29,26 @@ export const mainPageSlice = createSlice({
                 }else{
                     state.totalQuota-=state.value[filterValue].iLiter
                 }
+
             }
+            
+           
+        //   console.log(`hamed ->>>> ${JSON.stringify(hamed)}`);
             // console.log(`car info change car totalQuota ${JSON.stringify(state.totalQuota)}`)
             // console.log(`car info change car isActive ${JSON.stringify(state.value)}`)
-        }
+        },
 
 
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { getCarList , change_checked_car } = mainPageSlice.actions
+export const { getCarList , change_checked_car,getTotalQuota } = MainPageSlice.actions
 
-export default mainPageSlice.reducer
+export default MainPageSlice.reducer
 
 
-
+export const accessTotalQuota = () => {
+    return getstore().carInfo.totalQuota
+    
+  }

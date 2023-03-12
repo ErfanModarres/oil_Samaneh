@@ -14,6 +14,8 @@ export default makeStyles((theme) => ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor:'#e1e1e1',
+        borderRadius:5
     },
     body: {
         display: 'flex',

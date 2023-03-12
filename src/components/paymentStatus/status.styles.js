@@ -23,12 +23,11 @@ export default makeStyles((theme) => ({
         justifyContent:'center',
         alignItems:'center',
         width:'30%',
-        height:500,
         borderRadius:15,
         border:'2px solid #e1e1e1',
         marginTop:50,
         padding:50,
-        backgroundColor:'#fff'
+        backgroundColor:'#fff',
 
     },
 

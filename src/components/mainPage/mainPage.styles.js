@@ -19,7 +19,7 @@ export default makeStyles((theme) => ({
         flexDirection:'column',
         width:'100%',
         marginRight:25,
-        marginLeft:25,
+        marginLeft:20,
         borderRadius:10,
     },
         "@media screen and (max-width: 840px)": {
@@ -40,10 +40,11 @@ export default makeStyles((theme) => ({
         display:'flex',
         flexDirection:'column',
         backgroundColor:'#fff',
-        width:'40%',
+        width:'35%',
         margin:10,
         borderRadius:10,
-        height:"100vh"
+        height:"100vh",
+        padding:25
     },
     productPicArea:{
         display:'flex',

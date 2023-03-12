@@ -52,6 +52,32 @@ export default function Login(props) {
     const [checked, setChecked] = React.useState(false);
     const allocate = []
     const order = useSelector((state) => state.counter.value)
+    const [progress, setProgress] = useState ()
+
+
+
+    useEffect(() => {
+        const key = localStorage.getItem(`key`);
+        const authorization = localStorage.getItem('authorization');
+        const title = { title: 'React POST Request Example' };
+        const config = axios.create({});
+        const headers = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authorization };
+        const getList = async (title, headers) => {
+            // let response = await config.post('http://94.139.170.162:7700/api/oil_sales/v1/inprocess_sale_order_by_key, { vKey: key }, { headers: headers });
+            let response = await config.post('http://192.168.90.36:7700/api/oil_sales/v1/inprocess_sale_order_by_key', { vKey: key }, { headers: headers });
+            if (response.data.settings.success === 1) {
+                setProgress(response.data);
+                console.log(`progress : ${JSON.stringify(progress)}`);
+
+            }else {
+            console.log(`%%%%%%%%%%%%% : ${JSON.stringify(progress)}`);
+            response = response.data }
+        }
+        getList(title, headers);
+    }, []);
+
+
+
 
 
 
@@ -89,7 +115,6 @@ export default function Login(props) {
                 setLicensePlateArray(response.data.data);
                 dispatch(getCarList(response.data.data));
                 setLoading(false);
-                console.log(response);
             }
             response = response.data
         }
@@ -177,7 +202,7 @@ export default function Login(props) {
                 <Hidden mdDown>
                     <Grid className={classes.sideBar}>
                         <Grid className={classes.sideBarInfo}>
-                            <span>برای اطلاع از سهمیه قابل استفاده ، خودرو(های) خود را ثبت یا انتخاب نمایید</span>
+                            <span>برای اطلاع از سهمیه قابل استفاده <br /> خودرو(های) خود را ثبت یا انتخاب نمایید</span>
                             <Button
                                 style={{ marginTop: 10 }}
                                 color='primary'
@@ -192,6 +217,9 @@ export default function Login(props) {
                         </Grid>
                         {loading ? <Loading /> : null}
                         {licensePlateArray.map((l, index) => {
+                            const code = l.codeMessage
+                            const vMessage = l.vMessage
+
                             return (
                                 <CarList
                                     iran={l.LicensePlate.d}
@@ -202,7 +230,8 @@ export default function Login(props) {
                                     motor={l.vEngineNo}
                                     litter={l.iLiter}
                                     carId={l.vCustomerCarId}
-                                    tire={2}
+                                    // tire={2}
+                                    message = {code !=0 ? vMessage : null}
                                 />
                             )
                         })}
@@ -237,8 +266,8 @@ export default function Login(props) {
                     />
                 </Grid>
                 <Hidden mdDown>
-                    {order != 0 ?<Grid className={classes.sideBar}>
-                         <Basket /> 
+                    {order != 0 ? <Grid className={classes.sideBar}>
+                        <Basket />
                     </Grid> : null}
                 </Hidden>
             </Grid>
@@ -270,6 +299,13 @@ export default function Login(props) {
                         size='large'
                         variant='contained'
                     >اضافه کردن خودرو
+                    </Button>
+                    <Button
+                        style={{ margin: 10, width: '75%' , backgroundColor: '#ff0000', color:'#fff'}}
+                        onClick={handleClose}
+                        size='large'
+                        variant='contained'
+                    >انصراف
                     </Button>
                 </Grid>
             </Modal>

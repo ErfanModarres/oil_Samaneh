@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import clsx from 'clsx';
-import { Grid, Hidden } from '@material-ui/core'
+import { Button, CardActions, Grid, Hidden } from '@material-ui/core'
 import useStyles from './index.styles'
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -23,11 +23,19 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import LocalGasStationIcon from '@material-ui/icons/LocalGasStation';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Car from '../carInfo/car'
+import Badge from '@material-ui/core/Badge';
+
 
 export default function Header(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const drawerWidth = 240;
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [licensePlateArray, setLicensePlateArray] = useState([]);
+
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -37,11 +45,40 @@ export default function Header(props) {
         setOpen(false);
     };
 
+
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+
     return (
         <Grid className={classes.root}>
 
+            <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
 
-
+                <Button variant='contained' color='primary' size='small' fullWidth style={{ marginRight: 10, marginLeft: 10, width: '93%' }}>ثبت خودروی جدید</Button>
+                <Car
+                    iran='77'
+                    three='148'
+                    letter='ق'
+                    two='78'
+                    chassi='naap03ed2cj538025'
+                    motor='14190050097'
+                    litter='6'
+                    tire='2'
+                />
+            </Menu>
 
             <div className={classes.rootDrawer}>
                 <CssBaseline />
@@ -68,23 +105,26 @@ export default function Header(props) {
                                 </Typography>
                             </Grid>
                             <Grid style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                <IconButton
-                                    color="inherit"
-                                    aria-label="open drawer"
-                                    edge="start"
-                                    className={classes.IconButtonFunc}
-                                >
-                                    <DriveEtaIcon />
-                                </IconButton>
-                                <IconButton
-                                    color="inherit"
-                                    aria-label="open drawer"
-                                    edge="start"
-                                    className={classes.IconButtonFunc}
+                                <Badge badgeContent={2} color="error" className={classes.badge}>
+                                    <IconButton
+                                        color="inherit"
+                                        aria-label="open drawer"
+                                        edge="start"
+                                        className={classes.IconButtonFunc}
+                                        onClick={handleClick}
+                                    >
+                                        <DriveEtaIcon />
+                                    </IconButton>
+                                </Badge>
+                                    <IconButton
+                                        color="inherit"
+                                        aria-label="open drawer"
+                                        edge="start"
+                                        className={classes.IconButtonFunc}
 
-                                >
-                                    <ShoppingCartIcon />
-                                </IconButton>
+                                    >
+                                        <ShoppingCartIcon />
+                                    </IconButton>
                                 <img src={Logo} className={classes.logo} />
 
                             </Grid>
@@ -107,32 +147,32 @@ export default function Header(props) {
                     </div>
                     <Divider />
                     <List>
-                            <ListItem button  >
-                                <ListItemIcon><InboxIcon /> </ListItemIcon>
-                                <ListItemText ><a href={'/aboutus'} style={{color:'#000', textDecoration:'none'}}>درباره پیدو</a></ListItemText>
-                            </ListItem>
-                            <ListItem button >
-                                <ListItemIcon><LocalGasStationIcon /> </ListItemIcon>
-                                <ListItemText ><a href={"app.pido.co.ir"} style={{color:'#000', textDecoration:'none'}}>درخواست سوخت  </a></ListItemText>
-                            </ListItem>
-                            <ListItem button >
-                                <ListItemIcon><InfoIcon /> </ListItemIcon>
-                                <ListItemText ><a href={'/guid'} style={{color:'#000', textDecoration:'none'}}> راهنمای انتخاب روغن</a></ListItemText>
-                            </ListItem>
-                            <ListItem button >
-                                <ListItemIcon><QuestionAnswerIcon /> </ListItemIcon>
-                                <ListItemText ><a href={'/faq'} style={{color:'#000', textDecoration:'none'}}> سوالات متداول</a></ListItemText>
-                            </ListItem>
-                            <ListItem button >
-                                <ListItemIcon><ContactSupportIcon /> </ListItemIcon>
-                                <ListItemText ><a href={'/contactus'} style={{color:'#000', textDecoration:'none'}}>   پشتیبانی</a></ListItemText>
-                            </ListItem>
+                        <ListItem button  >
+                            <ListItemIcon><InboxIcon /> </ListItemIcon>
+                            <ListItemText ><a href={'/aboutus'} style={{ color: '#000', textDecoration: 'none' }}>درباره پیدو</a></ListItemText>
+                        </ListItem>
+                        <ListItem button >
+                            <ListItemIcon><LocalGasStationIcon /> </ListItemIcon>
+                            <ListItemText ><a href={"app.pido.co.ir"} style={{ color: '#000', textDecoration: 'none' }}>درخواست سوخت  </a></ListItemText>
+                        </ListItem>
+                        <ListItem button >
+                            <ListItemIcon><InfoIcon /> </ListItemIcon>
+                            <ListItemText ><a href={'/guid'} style={{ color: '#000', textDecoration: 'none' }}> راهنمای انتخاب روغن</a></ListItemText>
+                        </ListItem>
+                        <ListItem button >
+                            <ListItemIcon><QuestionAnswerIcon /> </ListItemIcon>
+                            <ListItemText ><a href={'/faq'} style={{ color: '#000', textDecoration: 'none' }}> سوالات متداول</a></ListItemText>
+                        </ListItem>
+                        <ListItem button >
+                            <ListItemIcon><ContactSupportIcon /> </ListItemIcon>
+                            <ListItemText ><a href={'/contactus'} style={{ color: '#000', textDecoration: 'none' }}>   پشتیبانی</a></ListItemText>
+                        </ListItem>
 
                     </List>
                     <Divider />
-                    <Grid style={{display:'flex' , flexDirection:'column', justifyContent:'flex-end' , alignItems:'center', height:'100%', margin:10}}>
+                    <Grid style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', height: '100%', margin: 10 }}>
                         <img src={Logo} style={{ width: 50 }} />
-                        <span style={{ textAlign: 'center', marginTop:10 }}>کلیه حقوق متعلق به شرکت تجارت الکترونیک آیریک پارسیان (پیــدو ) می باشد</span>
+                        <span style={{ textAlign: 'center', marginTop: 10 }}>کلیه حقوق متعلق به شرکت تجارت الکترونیک آیریک پارسیان (پیــدو ) می باشد</span>
                     </Grid>
                 </Drawer>
                 <main

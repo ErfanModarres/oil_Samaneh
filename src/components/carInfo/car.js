@@ -8,10 +8,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import Tire_Icon from '../../assets/images/tire.png'
 import Oil_Icon from '../../assets/images/oil_icon.jfif'
 import Radio from '@material-ui/core/Radio';
-
+import { change_checked_car, accessTotalQuota } from '../mainPage/mainPageSlice';
+import { setQuota } from '../productList/productListSlice'
 
 export default function Car(props) {
     const classes = useStyles();
+
+
     const [check, setCheck] = React.useState({
         checked: false,
     });
@@ -21,9 +24,8 @@ export default function Car(props) {
     const authorization = localStorage.getItem('authorization');
     const [totalAllocation, setTotalAllocation] = useState(0)
     const dispatch = useDispatch()
-    const checkedCar = useSelector((state) => state.carInfo.value.isActive)
+    const checkedCar = useSelector((state) => state.carInfo.value.isActive);
     const [selectedValue, setSelectedValue] = React.useState();
-
     const radioHandleChange = (event) => {
         setSelectedValue(event.target.value);
     };
@@ -51,19 +53,20 @@ export default function Car(props) {
         <Grid className={classes.root}>
             <Grid className={classes.control}>
                 <Radio
-                    checked={selectedValue === 'a'}
-                    onChange={radioHandleChange}
+                    checked={checkedCar}
+                    onChange={e => { dispatch(change_checked_car(props.carId)); dispatch(setQuota(accessTotalQuota())) }}
+                    // onChange={e=>{dispatch(setQuota(2));}}
                     value="a"
                     color='primary'
                     name="radio-button-demo"
                     inputProps={{ 'aria-label': 'A' }}
                 />
 
-                <Button onClick={deleteCarHandler}>
+                <Button onClick={deleteCarHandler} color='primary'>
                     <DeleteForeverIcon />
                 </Button>
             </Grid>
-            <Divider variant="middle" orientation="vertical" />
+            {/* <Divider variant="middle" orientation="vertical" /> */}
             <Grid className={classes.info}>
                 <Grid className={classes.body}>
                     <LicensePlate
@@ -80,14 +83,17 @@ export default function Car(props) {
                         <h3>سهمیه روغن موتور : {props.litter} لیتر</h3>
 
                     </Grid>
-                    <Grid style={{ display: 'flex', flexDirection: 'row', justifyContent: 'start', alignItems: 'center' }}>
+                    {/* <Grid style={{ display: 'flex', flexDirection: 'row', justifyContent: 'start', alignItems: 'center' }}>
 
                         <img src={Tire_Icon} style={{ width: 35, opacity: '60%', marginLeft: 5 }} />
                         <h3>سهمیه لاستیـــک  : {props.tire} حلقه</h3>
-                    </Grid>
+                    </Grid> */}
 
-                    <span>شماره شاسی : {props.chassi}</span>
-                    <span>شماره موتور : {props.motor}</span>
+                    <span>شماره شاسی : </span>
+                    <span> {props.chassi}</span>
+                    <span>شماره موتور : </span>
+                    <span> {props.motor}</span>
+                    <h3 style={{color:'#ff0000'}}>{props.message}</h3>
                 </Grid>
             </Grid>
         </Grid>

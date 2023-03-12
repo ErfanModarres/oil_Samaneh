@@ -30,7 +30,7 @@ export default makeStyles((theme) => ({
         height: 50,
         border: '1px solid #fff',
         borderRadius: 5,
-        marginLeft:5
+        margin:15
     },
     titleBox: {
         display: 'flex',
@@ -94,5 +94,10 @@ export default makeStyles((theme) => ({
         }),
         marginLeft: 0,
       },
+      badge:{
+        '& > *': {
+          margin: theme.spacing(1),
+        },
+      }
 
 }))

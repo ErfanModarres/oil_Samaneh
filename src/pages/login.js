@@ -7,6 +7,8 @@ import Constants from '../constants'
 import TextField from '@material-ui/core/TextField';
 import './login.css'
 import LoginPic from '../assets/images/login.png'
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 
 
@@ -18,6 +20,10 @@ export default function Login() {
     const [body, setBody] = useState('');
     const [otp, setOtp] = useState('')
     const [key, setKey] = useState('')
+    const [loading, setLoading] = useState(false)
+    const [value, setValue] = React.useState();
+
+
 
     // useEffect(() => {
     //     var timer = setInterval(() => {
@@ -38,6 +44,7 @@ export default function Login() {
         response = response.data
         if (response.settings.success === 1) {
             setKey(response.data.vKey);
+            setLoading(true);
             console.log(`response : ${JSON.stringify(response)}`);
         } else if (response.settings.success !== 1) {
             alert(response.settings.message);
@@ -118,8 +125,9 @@ export default function Login() {
                     onClick={handleSubmit}
                     color='primary'
                     size='large'
-                    disabled={!number || !id}
+                    disabled={loading == true ? true : false}
                     variant='contained'>
+                    {loading ? <CircularProgress className={classes.CircularProgress} size={20} /> : null}
                     دریافت کد ورود یکبار مصرف
                 </Button>
                 <Grid className={classes.otpArea}>
@@ -143,9 +151,6 @@ export default function Login() {
                         ارسال
                     </Button>
                 </Grid>
-                {/* <body1 className={classes.resendText}>
-                    ارسال مجدد کد تا {seconds} ثانیه دیگر
-                </body1> */}
             </Grid>
 
         </Grid>
